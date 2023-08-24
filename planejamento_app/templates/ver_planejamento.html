@@ -1,0 +1,44 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block 'head' %}
+	<link href="{% static 'perfil/css/home.css' %}" rel="stylesheet">
+	<link href="{% static 'perfil/css/gerenciar.css' %}" rel="stylesheet">
+	<link href="{% static 'extrato/css/view_extrato.css' %}" rel="stylesheet">
+{% endblock %}
+{% block 'body' %}
+	<div class="container">
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-md-2 text-center">
+			</div>
+			<div class="col-md">
+				<div class="card">
+					<div>
+						<span >Total Gasto!</span>
+						<br>
+						<span style="float: left !important;">R$ {{total_do_total_gasto}}</span>
+						<span style="float: right !important;">R$ {{valor_total_planejamento}}</span>
+						<br>
+						<div class="progress " style="height: 40px">
+							<div class="prograss-bar bg-info bg-danger" role="progressbar" style="width: {{percentual_planejamento}}%" aria-valuenow="100"></div>
+						</div>
+					</div>
+					<br>
+					{% for categoria in categorias %}
+						<p>{{categoria}}</p>
+						<div>
+							<span style="float: left !important;">R$ {{categoria.total_gasto}}</span>
+							<span style="float: right !important;">R$ {{categoria.valor_planejamento}}</span>
+						</div>
+						<div class="progress " style="height: 20xp">
+							<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{categoria.calcula_percentual_gasto_por_categoria}}%" aria-valuenow="100"></div>
+						</div>
+						<br>
+					{% endfor%}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
